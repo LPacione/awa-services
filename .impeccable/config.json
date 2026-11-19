@@ -1,0 +1,11 @@
+{
+  "detector": {
+    "ignoreRules": [
+      "codex-grid-background",
+      "kicker-above-heading",
+      "cream-palette"
+    ],
+    "ignoreFiles": [],
+    "ignoreValues": []
+  }
+}

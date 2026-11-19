@@ -1,0 +1,714 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   AWA — Tablero de obra
+   Sistema: tablero de esmalte, rieles azul marino, imanes dorados, papel
+   kraft y sellos. Las utilidades de Tailwind resuelven la composición; este
+   archivo resuelve el material.
+--------------------------------------------------------------------------- */
+
+@layer base {
+  html {
+    scroll-padding-top: 6.5rem;
+  }
+
+  body {
+    font-family: 'Barlow', system-ui, 'Segoe UI', sans-serif;
+    background-color: #f3efe6;
+    color: #14202e;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: #0b2e59;
+    color: #fbf8f0;
+  }
+
+  .dark-surface ::selection {
+    background-color: #e4c27a;
+    color: #071b33;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0b2e59;
+    outline-offset: 3px;
+  }
+
+  .dark-surface :focus-visible {
+    outline-color: #e4c27a;
+  }
+
+  input,
+  select,
+  textarea {
+    caret-color: #0b2e59;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(11, 46, 89, 0.35) #e8e1d2;
+  }
+
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #e8e1d2;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: rgba(11, 46, 89, 0.35);
+    border: 2px solid #e8e1d2;
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .container-board {
+    width: 100%;
+    max-width: 1240px;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-board {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* --- Material del tablero ------------------------------------------------ */
+
+  .board-surface {
+    background-color: #f3efe6;
+    background-image:
+      linear-gradient(to right, rgba(11, 46, 89, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(11, 46, 89, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: -1px -1px;
+  }
+
+  .board-surface-dark {
+    background-color: #071b33;
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 44px 44px;
+    background-position: -1px -1px;
+  }
+
+  .paper-sheet {
+    background-color: #fbf8f0;
+    border: 1px solid #d8d0bf;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 2px 0 rgba(7, 27, 51, 0.04),
+      0 28px 60px -38px rgba(7, 27, 51, 0.6);
+  }
+
+  .hairline {
+    border-color: #d8d0bf;
+  }
+
+  .mono-label {
+    font-family: 'Azeret Mono', ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* --- Orden de trabajo (hero) -------------------------------------------- */
+
+  .work-order {
+    position: relative;
+    background-color: #fbf8f0;
+    border: 1px solid #d3cab7;
+    padding: clamp(1.15rem, 3.2vw, 2.6rem);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.85) inset,
+      0 2px 0 rgba(7, 27, 51, 0.05),
+      0 34px 70px -34px rgba(0, 0, 0, 0.7);
+    transform: rotate(-0.55deg);
+  }
+
+  .work-order::before,
+  .work-order::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #f0d79c, #9c7c38 68%);
+    box-shadow: 0 2px 3px rgba(7, 27, 51, 0.4);
+  }
+
+  .work-order::before { left: 13px; }
+  .work-order::after { right: 13px; }
+
+  .work-order__tab {
+    position: absolute;
+    top: -1.45rem;
+    left: clamp(1.15rem, 3.2vw, 2.6rem);
+    background-color: #dccfb6;
+    border: 1px solid #c6b694;
+    border-bottom: 0;
+    padding: 0.38rem 0.8rem 0.3rem;
+    color: #4c4331;
+  }
+
+  .stamp {
+    position: absolute;
+    top: -0.85rem;
+    right: 1.35rem;
+    transform: rotate(5deg);
+    border: 2px solid rgba(11, 46, 89, 0.5);
+    color: rgba(11, 46, 89, 0.68);
+    padding: 0.3rem 0.6rem;
+    font-family: 'Azeret Mono', ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(251, 248, 240, 0.65);
+  }
+
+  .stamp::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border: 1px solid rgba(11, 46, 89, 0.28);
+    pointer-events: none;
+  }
+
+  /* --- Botones ------------------------------------------------------------- */
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 0.95rem 1.35rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn svg { width: 1.05em; height: 1.05em; flex: none; }
+
+  .btn-primary {
+    background-color: #c2a158;
+    color: #0a1a2e;
+    border-color: #a98a45;
+    box-shadow: 0 2px 0 #8f7439, 0 12px 24px -14px rgba(7, 27, 51, 0.8);
+  }
+
+  .btn-primary:hover {
+    background-color: #e4c27a;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 0 #8f7439, 0 16px 28px -14px rgba(7, 27, 51, 0.8);
+  }
+
+  .btn-primary:active { transform: translateY(1px); box-shadow: 0 1px 0 #8f7439; }
+
+  .btn-ghost {
+    border-color: rgba(11, 46, 89, 0.35);
+    color: #0b2e59;
+    background-color: transparent;
+  }
+
+  .btn-ghost:hover { background-color: rgba(11, 46, 89, 0.06); border-color: rgba(11, 46, 89, 0.6); }
+
+  .btn-ghost-light {
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fbf8f0;
+    background-color: transparent;
+  }
+
+  .btn-ghost-light:hover { background-color: rgba(255, 255, 255, 0.1); border-color: rgba(228, 194, 122, 0.7); }
+
+  /* --- Navegación ---------------------------------------------------------- */
+
+  .site-header {
+    transition: box-shadow 0.25s ease;
+  }
+
+  .site-header.is-scrolled {
+    box-shadow: 0 14px 32px -26px rgba(7, 27, 51, 0.9);
+  }
+
+  .header-main {
+    transition: padding 0.25s ease;
+  }
+
+  .site-header.is-scrolled .header-main {
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .nav-link {
+    position: relative;
+    font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #33415a;
+    padding-block: 0.35rem;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.15rem;
+    height: 3px;
+    width: 100%;
+    background-color: #c2a158;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-link:hover { color: #0b2e59; }
+  .nav-link:hover::after,
+  .nav-link.is-active::after { transform: scaleX(1); }
+  .nav-link.is-active { color: #0b2e59; }
+
+  /* --- Riel de especialidades (hero) -------------------------------------- */
+
+  .magnet {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.85rem 0.7rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    color: #efe8d8;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .magnet svg { width: 1.1rem; height: 1.1rem; color: #e4c27a; flex: none; transition: color 0.2s ease; }
+  .magnet:hover { background-color: #c2a158; color: #071b33; }
+  .magnet:hover svg { color: #071b33; }
+
+  @media (max-width: 639px) {
+    .magnet {
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.7rem 0.2rem;
+      text-align: center;
+    }
+
+    .magnet span { line-height: 1.15; }
+  }
+
+  /* --- Registro de especialidades ---------------------------------------- */
+
+  .register-row {
+    border-top: 1px solid #d8d0bf;
+    transition: background-color 0.25s ease;
+  }
+
+  .register-row:last-child { border-bottom: 1px solid #d8d0bf; }
+  .register-row:hover { background-color: rgba(255, 255, 255, 0.6); }
+  .register-row:hover .register-num { color: #9c7c38; }
+  .register-row:hover .register-icon { background-color: #0b2e59; border-color: #0b2e59; color: #e4c27a; }
+
+  .register-num {
+    font-family: 'Azeret Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(11, 46, 89, 0.7);
+    transition: color 0.25s ease;
+    padding-top: 0.15rem;
+  }
+
+  .register-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: none;
+    border: 1px solid rgba(11, 46, 89, 0.18);
+    background-color: rgba(255, 255, 255, 0.65);
+    color: #0b2e59;
+    border-radius: 3px;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .register-icon svg { width: 1.35rem; height: 1.35rem; }
+
+  .register-tasks {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #4b5668;
+  }
+
+  .register-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #0b2e59;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-decoration-color: rgba(194, 161, 88, 0.65);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+  }
+
+  .register-cta svg { width: 0.95rem; height: 0.95rem; transition: transform 0.2s ease; }
+  .register-cta:hover { color: #9c7c38; }
+  .register-cta:hover svg { transform: translateX(2px); }
+
+  @media (max-width: 767px) {
+    .register-cta {
+      justify-self: start;
+      min-height: 2.6rem;
+      padding: 0.55rem 0.95rem;
+      border: 1px solid rgba(11, 46, 89, 0.28);
+      border-radius: 3px;
+      background-color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+    }
+  }
+
+  /* --- Filtros de obra ----------------------------------------------------- */
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid #cfc5b1;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #33415a;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    border-radius: 3px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .filter-chip:hover { border-color: #0b2e59; color: #0b2e59; }
+
+  .filter-chip[aria-pressed='true'] {
+    background-color: #0b2e59;
+    border-color: #0b2e59;
+    color: #fbf8f0;
+  }
+
+  /* --- Mosaico de obra ----------------------------------------------------- */
+
+  .photo-tile {
+    position: relative;
+    overflow: hidden;
+    background-color: #0a1a2e;
+    text-align: left;
+    isolation: isolate;
+  }
+
+  .photo-tile[hidden] { display: none; }
+
+  .photo-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .photo-tile:hover img { transform: scale(1.035); }
+
+  .photo-tile__bar {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 0.8rem;
+    background: linear-gradient(to top, rgba(7, 27, 51, 0.92), rgba(7, 27, 51, 0.55) 60%, transparent);
+    color: #fbf8f0;
+    transition: background-color 0.25s ease;
+  }
+
+  .photo-tile:hover .photo-tile__bar { background-color: rgba(7, 27, 51, 0.88); background-image: none; }
+
+  .photo-tile__zoom {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #e4c27a;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 639px) {
+    .filter-chip { min-height: 2.75rem; }
+    .photo-tile__bar { padding: 0.55rem 0.7rem; }
+    .photo-tile__zoom { display: none; }
+  }
+
+  /* --- Lightbox ------------------------------------------------------------ */
+
+  .lightbox {
+    width: min(1080px, 94vw);
+    max-height: 92vh;
+    padding: 0;
+    border: 1px solid rgba(228, 194, 122, 0.35);
+    background-color: #071b33;
+    color: #fbf8f0;
+    box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.9);
+  }
+
+  .lightbox::backdrop {
+    background-color: rgba(7, 27, 51, 0.88);
+  }
+
+  html:has(dialog[open]) { overflow: hidden; }
+
+  .lightbox__figure {
+    display: flex;
+    flex-direction: column;
+    max-height: 92vh;
+  }
+
+  .lightbox__img {
+    width: 100%;
+    height: auto;
+    max-height: 74vh;
+    object-fit: contain;
+    background-color: #0a1a2e;
+  }
+
+  .lightbox__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .lightbox__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: 1px solid rgba(228, 194, 122, 0.45);
+    color: #e4c27a;
+    background-color: transparent;
+    border-radius: 3px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .lightbox__btn:hover { background-color: #e4c27a; color: #071b33; }
+  .lightbox__btn svg { width: 1.1rem; height: 1.1rem; }
+
+  /* --- Formulario ---------------------------------------------------------- */
+
+  .field-label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-family: 'Azeret Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #33415a;
+    margin-bottom: 0.4rem;
+  }
+
+  .field-control {
+    width: 100%;
+    border: 1px solid #cfc5b1;
+    background-color: #fffdf7;
+    color: #14202e;
+    padding: 0.75rem 0.85rem;
+    border-radius: 3px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .field-control::placeholder { color: #6b7480; }
+
+  .field-control:focus {
+    outline: none;
+    border-color: #0b2e59;
+    box-shadow: 0 0 0 3px rgba(194, 161, 88, 0.35);
+  }
+
+  .field-control:user-invalid { border-color: #a6402c; }
+
+  select.field-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b2e59' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.05rem;
+    padding-right: 2.2rem;
+  }
+
+  /* --- Fila de especialidad apuntada desde el riel ------------------------ */
+
+  .register-row:target {
+    background-color: #fffdf7;
+    box-shadow: inset 0 0 0 2px rgba(194, 161, 88, 0.55);
+  }
+
+  /* --- Crédito de desarrollo (pie) ---------------------------------------- */
+
+  .dev-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    padding: 0.3rem 0.4rem;
+    background-color: #f3efe6;
+    border: 1px solid rgba(216, 208, 191, 0.75);
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.55) inset, 0 2px 0 rgba(0, 0, 0, 0.22);
+  }
+
+  .dev-mark img {
+    display: block;
+    width: auto;
+    height: 1.75rem;
+  }
+
+  /* --- WhatsApp flotante (desktop) ---------------------------------------- */
+
+  .whatsapp-float {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: #c2a158;
+    color: #071b33;
+    border: 1px solid #9c7c38;
+    box-shadow: 0 2px 0 #8f7439, 0 18px 32px -18px rgba(7, 27, 51, 0.85);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .whatsapp-float:hover,
+  .whatsapp-float:focus-visible {
+    background-color: #e4c27a;
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-float svg {
+    width: 1.65rem;
+    height: 1.65rem;
+    fill: currentColor;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Movimiento: un solo gesto autoral, la orden de trabajo que cae sobre el
+   tablero mientras los imanes se acomodan.
+--------------------------------------------------------------------------- */
+
+@keyframes sheetIn {
+  from { opacity: 0; transform: translateY(26px) rotate(-1.6deg); }
+  to { opacity: 1; transform: translateY(0) rotate(-0.55deg); }
+}
+
+@keyframes magnetIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.hero-sheet { animation: sheetIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.hero-rail li {
+  animation: magnetIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.35s + var(--i) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-sheet,
+  .hero-rail li { animation: none; }
+  .photo-tile img,
+  .register-row,
+  .btn,
+  .nav-link::after { transition: none; }
+  .photo-tile:hover img { transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   Barra de acción fija en mobile
+--------------------------------------------------------------------------- */
+
+.mobile-action-bar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .mobile-action-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 60;
+    padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+    background-color: rgba(7, 27, 51, 0.97);
+    border-top: 1px solid rgba(228, 194, 122, 0.35);
+  }
+
+  .mobile-action-bar .btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 0.6rem;
+  }
+
+  body { padding-bottom: 4.9rem; }
+  .whatsapp-float { display: none; }
+
+  footer ul a { display: inline-block; padding-block: 0.3rem; }
+}

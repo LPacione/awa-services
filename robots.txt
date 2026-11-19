@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# TODO: cuando el sitio tenga dominio propio, descomentar y ajustar:
+# Sitemap: https://awaservicios.com.ar/sitemap.xml
