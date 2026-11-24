@@ -484,6 +484,138 @@
     .photo-tile__zoom { display: none; }
   }
 
+  /* --- Caso humedad: ventilación por capilaridad -------------------------- */
+
+  .capilar-rail {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(84%, 19.5rem);
+    gap: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 0.85rem;
+  }
+
+  .capilar-step {
+    border-top: 2px solid #0b2e59;
+    padding-top: 0.8rem;
+    scroll-snap-align: start;
+  }
+
+  .capilar-frame {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border: 1px solid #cfc5b1;
+    background-color: #0a1a2e;
+    padding: 0;
+    text-align: left;
+    isolation: isolate;
+  }
+
+  .capilar-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .capilar-frame:hover img { transform: scale(1.035); }
+
+  .capilar-frame__num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.4rem;
+    height: 2.4rem;
+    background-color: #c2a158;
+    border-right: 1px solid #9c7c38;
+    border-bottom: 1px solid #9c7c38;
+    color: #071b33;
+    font-family: 'Azeret Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  .capilar-frame__hint {
+    position: absolute;
+    right: 0.45rem;
+    top: 0.45rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.28rem 0.45rem;
+    background-color: #071b33;
+    border: 1px solid rgba(228, 194, 122, 0.4);
+    color: #e4c27a;
+    font-family: 'Barlow Condensed', 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .capilar-frame__hint svg { width: 0.8rem; height: 0.8rem; }
+  .capilar-frame:hover .capilar-frame__hint,
+  .capilar-frame:focus-visible .capilar-frame__hint {
+    background-color: #e4c27a;
+    color: #071b33;
+  }
+
+  .capilar-step__title {
+    margin-top: 0.85rem;
+    font-family: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    color: #0b2e59;
+  }
+
+  .capilar-step__text {
+    margin-top: 0.35rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: #4b5668;
+  }
+
+  @media (min-width: 1024px) {
+    .capilar-rail {
+      grid-auto-flow: row;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0;
+      overflow: visible;
+      border-top: 2px solid #0b2e59;
+      padding-top: 1rem;
+      padding-bottom: 0;
+    }
+
+    .capilar-step {
+      border-top: 0;
+      border-left: 1px solid #e2dac9;
+      padding: 0 1rem;
+    }
+
+    .capilar-step:first-child {
+      border-left: 0;
+      padding-left: 0;
+    }
+
+    .capilar-step:last-child { padding-right: 0; }
+  }
+
   /* --- Lightbox ------------------------------------------------------------ */
 
   .lightbox {
@@ -540,6 +672,46 @@
 
   .lightbox__btn:hover { background-color: #e4c27a; color: #071b33; }
   .lightbox__btn svg { width: 1.1rem; height: 1.1rem; }
+
+  @media (min-width: 640px) {
+    .lightbox--portrait { width: min(520px, 94vw); }
+  }
+
+  @media (max-width: 639px) {
+    .lightbox {
+      width: 100%;
+      max-width: 100%;
+      height: 100dvh;
+      max-height: 100dvh;
+      margin: 0;
+      border: 0;
+    }
+
+    .lightbox__figure {
+      height: 100%;
+      max-height: none;
+    }
+
+    .lightbox__img {
+      flex: 1 1 0;
+      min-height: 0;
+      width: 100%;
+      height: auto;
+      max-height: none;
+      background-color: #071b33;
+    }
+
+    .lightbox__bar {
+      flex: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+      padding: 0.8rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+    }
+
+    .lightbox__bar > div:last-child { justify-content: space-between; }
+    .lightbox__btn { width: 2.75rem; height: 2.75rem; }
+  }
 
   /* --- Formulario ---------------------------------------------------------- */
 
@@ -674,10 +846,12 @@
   .hero-sheet,
   .hero-rail li { animation: none; }
   .photo-tile img,
+  .capilar-frame img,
   .register-row,
   .btn,
   .nav-link::after { transition: none; }
   .photo-tile:hover img { transform: none; }
+  .capilar-frame:hover img { transform: none; }
 }
 
 /* ---------------------------------------------------------------------------

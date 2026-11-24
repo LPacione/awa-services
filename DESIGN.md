@@ -50,7 +50,8 @@ Los títulos usan `text-wrap: balance`; los párrafos, `text-wrap: pretty`.
 - `.register-row`: fila de registro con número, ícono, tareas y CTA.
 - `.filter-chip`: filtro de obra con `aria-pressed`; 44 px de alto en mobile.
 - `.photo-tile`: mosaico con barra de categoría y “Ampliar +” (este último sólo en desktop).
-- `.lightbox`: `<dialog>` nativo, con flechas, contador y cierre por `Esc` o backdrop.
+- `.capilar-rail`: tira de etapas de la intervención por humedad; tarjetas verticales 9:16 con scroll-snap en mobile y cinco columnas en desktop.
+- `.lightbox`: `<dialog>` nativo, con flechas, contador y cierre por `Esc` o backdrop; pantalla completa en mobile.
 - `.btn-primary`: dorado con sombra de apoyo; `.btn-ghost` y `.btn-ghost-light`.
 - `.field-control`: inputs de 16 px (evita zoom en iOS), foco dorado.
 - `.mobile-action-bar`: WhatsApp + Llamar fija abajo, sólo en mobile.

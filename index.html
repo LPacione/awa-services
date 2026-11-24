@@ -123,18 +123,21 @@
                 <img src="images/logo-96.png" alt="Logo AWA" class="h-11 w-11 rounded-full" width="44" height="44">
             </a>
 
-            <nav class="hidden items-center gap-7 md:flex" aria-label="Principal">
-                <a href="#especialidades" class="nav-link" data-nav="especialidades">Especialidades</a>
-                <a href="#obras" class="nav-link" data-nav="obras">Obras</a>
-                <a href="#proceso" class="nav-link" data-nav="proceso">Cómo trabajamos</a>
+            <nav class="hidden items-center gap-5 md:flex lg:gap-7" aria-label="Principal">
+                <a href="#especialidades" class="nav-link whitespace-nowrap" data-nav="especialidades">Especialidades</a>
+                <a href="#obras" class="nav-link whitespace-nowrap" data-nav="obras">Obras</a>
+                <a href="#humedad" class="nav-link whitespace-nowrap" data-nav="humedad">Humedad</a>
+                <a href="#proceso" class="nav-link whitespace-nowrap" data-nav="proceso">Cómo trabajamos</a>
             </nav>
 
             <div class="flex items-center gap-2">
                 <a href="https://wa.me/5492915709492?text=Hola%20AWA%2C%20quiero%20hacer%20una%20consulta%20por%20un%20trabajo%20en%20mi%20planta."
-                   class="btn btn-primary hidden sm:inline-flex"
-                   target="_blank" rel="noopener noreferrer">
+                   class="btn btn-primary hidden whitespace-nowrap sm:inline-flex"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Escribir por WhatsApp">
                     <svg aria-hidden="true"><use href="#i-whatsapp"/></svg>
-                    Escribir por WhatsApp
+                    <span class="hidden lg:inline">Escribir por WhatsApp</span>
+                    <span class="lg:hidden">WhatsApp</span>
                 </a>
                 <button id="mobile-menu-button" type="button"
                         class="inline-flex h-11 w-11 items-center justify-center border border-rule text-navy md:hidden"
@@ -148,6 +151,7 @@
             <nav class="container-board py-2" aria-label="Menú móvil">
                 <a href="#especialidades" class="mobile-nav-link block border-b border-rule/70 py-3 font-display text-lg uppercase tracking-wide text-navy">Especialidades</a>
                 <a href="#obras" class="mobile-nav-link block border-b border-rule/70 py-3 font-display text-lg uppercase tracking-wide text-navy">Obras</a>
+                <a href="#humedad" class="mobile-nav-link block border-b border-rule/70 py-3 font-display text-lg uppercase tracking-wide text-navy">Humedad</a>
                 <a href="#proceso" class="mobile-nav-link block border-b border-rule/70 py-3 font-display text-lg uppercase tracking-wide text-navy">Cómo trabajamos</a>
                 <a href="#contacto" class="mobile-nav-link block py-3 font-display text-lg uppercase tracking-wide text-navy">Contacto</a>
                 <a href="https://wa.me/5492915709492?text=Hola%20AWA%2C%20quiero%20hacer%20una%20consulta%20por%20un%20trabajo%20en%20mi%20planta."
@@ -566,6 +570,145 @@
         </section>
 
         <!-- ============================================================
+             HUMEDAD — ventilación por capilaridad, etapa por etapa
+        ============================================================= -->
+        <section id="humedad" class="border-b border-rule bg-paper py-16 md:py-24">
+            <div class="container-board">
+                <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+                    <div class="lg:col-span-3">
+                        <p class="mono-label text-ink/65">Humedad ascendente</p>
+                        <p class="mono-label mt-2 text-ink/70">05 etapas de obra</p>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <h2 class="text-[clamp(2rem,3.2vw,2.9rem)] uppercase leading-[0.94] text-navy">
+                            ¿Problemas con la humedad?
+                            <span class="mt-1 block">¿Ya probaste con la <span class="underline decoration-gold decoration-[3px] underline-offset-[6px]">ventilación por capilaridad</span>?</span>
+                        </h2>
+                    </div>
+                    <div class="lg:col-span-3">
+                        <p class="max-w-[36ch] text-ink/70">
+                            La humedad que sube por la base no se corrige pintando encima. Se abre el pie del muro, se coloca un zócalo ventilado y se recompone el paramento.
+                        </p>
+                        <a href="https://wa.me/5492915709492?text=Hola%20AWA%2C%20tengo%20un%20problema%20de%20humedad%20y%20quiero%20consultar%20por%20ventilaci%C3%B3n%20por%20capilaridad."
+                           class="register-cta mt-3" target="_blank" rel="noopener noreferrer">
+                            Consultar
+                            <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between lg:mt-10">
+                    <p class="mono-label text-ink/65">Registro de ejecución</p>
+                    <p class="mono-label flex items-center gap-2 text-ink/65 lg:hidden">
+                        Deslizá las etapas
+                        <svg class="h-3.5 w-3.5" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                    </p>
+                </div>
+
+                <ol class="capilar-rail mt-3" aria-label="Etapas de la ventilación por capilaridad">
+                    <li class="capilar-step">
+                        <button type="button" class="capilar-frame" data-stage-photo
+                                data-full="images/humedad1.jpeg"
+                                data-category="Ventilación por capilaridad"
+                                data-caption="Picado de base: se retira el revoque hasta dejar la mampostería a la vista."
+                                aria-label="Ampliar etapa 01 de 05: picado de la base del muro">
+                            <img src="images/humedad1.jpeg"
+                                 alt="Base de un muro con el revoque retirado y la mampostería de ladrillo a la vista."
+                                 width="720" height="1280" loading="lazy" decoding="async">
+                            <span class="capilar-frame__num" aria-hidden="true">01</span>
+                            <span class="capilar-frame__hint">
+                                <span>Ver</span>
+                                <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                            </span>
+                        </button>
+                        <h3 class="capilar-step__title">Picado de base</h3>
+                        <p class="capilar-step__text">Se retira el revoque de la base hasta dejar la mampostería a la vista.</p>
+                    </li>
+
+                    <li class="capilar-step">
+                        <button type="button" class="capilar-frame" data-stage-photo
+                                data-full="images/humedad2.jpeg"
+                                data-category="Ventilación por capilaridad"
+                                data-caption="Nivel y replanteo: se controla la horizontal a lo largo de todo el paramento."
+                                aria-label="Ampliar etapa 02 de 05: nivelación y replanteo sobre el muro">
+                            <img src="images/humedad2.jpeg"
+                                 alt="Nivel de burbuja apoyado sobre el perfil metálico en la base de un muro."
+                                 width="720" height="1280" loading="lazy" decoding="async">
+                            <span class="capilar-frame__num" aria-hidden="true">02</span>
+                            <span class="capilar-frame__hint">
+                                <span>Ver</span>
+                                <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                            </span>
+                        </button>
+                        <h3 class="capilar-step__title">Nivel y replanteo</h3>
+                        <p class="capilar-step__text">Se controla la horizontal con nivel a lo largo de todo el paramento.</p>
+                    </li>
+
+                    <li class="capilar-step">
+                        <button type="button" class="capilar-frame" data-stage-photo
+                                data-full="images/humedad3.jpeg"
+                                data-category="Ventilación por capilaridad"
+                                data-caption="Montaje del perfil: se fija el perfil metálico que recibe el zócalo ventilado."
+                                aria-label="Ampliar etapa 03 de 05: montaje del perfil de ventilación">
+                            <img src="images/humedad3.jpeg"
+                                 alt="Perfil metálico de ventilación fijado a lo largo de la base de un muro."
+                                 width="720" height="1280" loading="lazy" decoding="async">
+                            <span class="capilar-frame__num" aria-hidden="true">03</span>
+                            <span class="capilar-frame__hint">
+                                <span>Ver</span>
+                                <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                            </span>
+                        </button>
+                        <h3 class="capilar-step__title">Montaje del perfil</h3>
+                        <p class="capilar-step__text">Se fija el perfil metálico que va a recibir el zócalo ventilado.</p>
+                    </li>
+
+                    <li class="capilar-step">
+                        <button type="button" class="capilar-frame" data-stage-photo
+                                data-full="images/humedad4.jpeg"
+                                data-category="Ventilación por capilaridad"
+                                data-caption="Fijación con mortero: se rellena para integrar el perfil al muro."
+                                aria-label="Ampliar etapa 04 de 05: fijación del perfil con mortero">
+                            <img src="images/humedad4.jpeg"
+                                 alt="Perfil metálico rodeado de mortero fresco en la base de un muro."
+                                 width="720" height="1280" loading="lazy" decoding="async">
+                            <span class="capilar-frame__num" aria-hidden="true">04</span>
+                            <span class="capilar-frame__hint">
+                                <span>Ver</span>
+                                <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                            </span>
+                        </button>
+                        <h3 class="capilar-step__title">Fijación con mortero</h3>
+                        <p class="capilar-step__text">Se rellena con mortero para integrar el perfil al muro.</p>
+                    </li>
+
+                    <li class="capilar-step">
+                        <button type="button" class="capilar-frame" data-stage-photo
+                                data-full="images/humedad5.jpeg"
+                                data-category="Ventilación por capilaridad"
+                                data-caption="Rejilla y terminación: la base queda cerrada con rejilla perforada y ventilada."
+                                aria-label="Ampliar etapa 05 de 05: rejilla perforada y terminación">
+                            <img src="images/humedad5.jpeg"
+                                 alt="Zócalo ventilado con rejilla perforada terminado sobre la base de un muro."
+                                 width="720" height="1280" loading="lazy" decoding="async">
+                            <span class="capilar-frame__num" aria-hidden="true">05</span>
+                            <span class="capilar-frame__hint">
+                                <span>Ver</span>
+                                <svg aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
+                            </span>
+                        </button>
+                        <h3 class="capilar-step__title">Rejilla y terminación</h3>
+                        <p class="capilar-step__text">Se coloca la rejilla perforada y la base del muro queda ventilada.</p>
+                    </li>
+                </ol>
+
+                <p class="mt-5 max-w-[78ch] text-sm leading-relaxed text-ink/65">
+                    Tocá cada foto para verla completa. Registro de ejecución sobre muro de mampostería: el sistema se define después de relevar cada caso.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================
              PROCESO — del mensaje a la obra
         ============================================================= -->
         <section id="proceso" class="dark-surface relative border-b border-white/10 bg-navy-deep py-16 md:py-24">
@@ -768,6 +911,7 @@
                     <ul class="mt-3 space-y-2 text-sm">
                         <li><a href="#especialidades" class="transition-colors hover:text-gold-bright">Especialidades</a></li>
                         <li><a href="#obras" class="transition-colors hover:text-gold-bright">Obras</a></li>
+                        <li><a href="#humedad" class="transition-colors hover:text-gold-bright">Humedad</a></li>
                         <li><a href="#proceso" class="transition-colors hover:text-gold-bright">Cómo trabajamos</a></li>
                         <li><a href="#contacto" class="transition-colors hover:text-gold-bright">Contacto</a></li>
                     </ul>
@@ -829,7 +973,7 @@
     </a>
 
     <!-- Lightbox de obra -->
-    <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-cat">
+    <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-cat" aria-describedby="lightbox-caption">
         <figure class="lightbox__figure">
             <img id="lightbox-img" class="lightbox__img" src="images/techo_chapas1.jpg" alt="" width="1400" height="900" decoding="async">
             <figcaption class="lightbox__bar">
@@ -838,7 +982,7 @@
                     <p id="lightbox-caption" class="mt-1 text-sm text-white/80"></p>
                 </div>
                 <div class="flex shrink-0 items-center gap-2">
-                    <p id="lightbox-count" class="mono-label mr-1 text-white/65"></p>
+                    <p id="lightbox-count" class="mono-label mr-1 text-white/65" aria-live="polite"></p>
                     <button type="button" class="lightbox__btn" data-lightbox-prev aria-label="Foto anterior">
                         <svg aria-hidden="true"><use href="#i-chevron-left"/></svg>
                     </button>
@@ -963,6 +1107,7 @@
                 const sourceImg = tile.querySelector('img');
                 lightboxImg.src = tile.dataset.full;
                 lightboxImg.alt = sourceImg ? sourceImg.alt : '';
+                lightbox.classList.toggle('lightbox--portrait', tile.hasAttribute('data-stage-photo'));
                 lightboxCat.textContent = tile.dataset.category;
                 lightboxCaption.textContent = tile.dataset.caption;
                 lightboxCount.textContent = (currentIndex + 1) + ' / ' + currentList.length;
@@ -974,9 +1119,9 @@
                 paintLightbox();
             }
 
-            function openLightbox(tile) {
-                currentList = visibleTiles();
-                currentIndex = Math.max(0, currentList.indexOf(tile));
+            function openLightbox(item, list) {
+                currentList = list && list.length ? list : visibleTiles();
+                currentIndex = Math.max(0, currentList.indexOf(item));
                 paintLightbox();
                 lightbox.showModal();
                 closeBtn.focus();
@@ -986,7 +1131,11 @@
                 if (lightbox.open) lightbox.close();
             }
 
-            tiles.forEach(tile => tile.addEventListener('click', () => openLightbox(tile)));
+            tiles.forEach(tile => tile.addEventListener('click', () => openLightbox(tile, visibleTiles())));
+
+            const stagePhotos = Array.from(document.querySelectorAll('[data-stage-photo]'));
+            stagePhotos.forEach(photo => photo.addEventListener('click', () => openLightbox(photo, stagePhotos)));
+
             closeBtn.addEventListener('click', closeLightbox);
             lightbox.querySelector('[data-lightbox-prev]').addEventListener('click', () => stepLightbox(-1));
             lightbox.querySelector('[data-lightbox-next]').addEventListener('click', () => stepLightbox(1));
